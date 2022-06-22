@@ -5,11 +5,11 @@ const addBookButton = document.getElementById("add_book");
 
 addBookButton.addEventListener("click", addBookToLibrary);
 
-function Book(title, author, pages, read) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.read = read;
+function Book(Title, Author, Pages, Status) {
+  this.Title = Title;
+  this.Author = Author;
+  this.Pages = Pages;
+  this.Status = Status;
   myLibrary.push(this);
 }
 
@@ -40,14 +40,23 @@ function displayBook() {
   for (let i = 0; i < myLibrary.length; i++) {
     let bookCard = document.createElement("div");
     bookCard.classList.add("book-card");
+    // bookCard.setAttribute("data-index", `${i}`);
     bookCardContainer.appendChild(bookCard);
     let bookInfo = myLibrary[i];
-    Object.values(bookInfo).forEach((val) => {
+    Object.entries(bookInfo).forEach(([key, value]) => {
       let bookCardText = document.createElement("div");
       bookCard.appendChild(bookCardText);
-      bookCardText.textContent = val;
+      bookCardText.textContent = `${key}: ${value}`;
     });
+    let closeIcon = document.createElement("i");
+    closeIcon.classList.add("bi", "bi-x-lg");
+    closeIcon.addEventListener("click", removeBook);
+    bookCard.appendChild(closeIcon);
   }
 }
 
-displayBook();
+function removeBook() {
+  this.parentElement.remove();
+}
+
+window.onload = displayBook();
