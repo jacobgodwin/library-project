@@ -1,2 +1,3 @@
-# library-project
-Library project for The Odin Project
+# Library Project
+
+Library project for The Odin Project demonstrating DOM manipulation with JavaScript.
