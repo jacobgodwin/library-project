@@ -9,10 +9,11 @@ body {
 #main-container {
   display: grid;
   grid-template-columns: 300px 1fr;
-  grid-template-rows: 100px 1fr;
+  grid-template-rows: 100px 1fr 50px;
   grid-template-areas:
     "header header"
-    "submit library";
+    "submit library"
+    "footer footer";
 }
 
 #header {
@@ -23,6 +24,16 @@ body {
   justify-content: center;
   align-items: center;
   grid-area: header;
+}
+
+#footer {
+  grid-area: footer;
+  background-color: #0369a1;
+  color: #f0f9ff;
+  font-size: 0.8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #book-cards {
@@ -65,7 +76,8 @@ body {
   gap: 10px;
 }
 
-.bi-x-lg {
+.bi-x-lg,
+.bi-bookmark {
   justify-self: end;
   font-size: 1.2rem;
 }

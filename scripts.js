@@ -42,9 +42,14 @@ function displayBook() {
     bookCard.classList.add("book-card");
     // bookCard.setAttribute("data-index", `${i}`);
     bookCardContainer.appendChild(bookCard);
+    let statusIcon = document.createElement("i");
+    statusIcon.classList.add("bi", "bi-bookmark");
+    statusIcon.addEventListener("click", readStatus);
+    bookCard.appendChild(statusIcon);
     let bookInfo = myLibrary[i];
     Object.entries(bookInfo).forEach(([key, value]) => {
       let bookCardText = document.createElement("div");
+      bookCardText.setAttribute("id", `${key}`.toLowerCase());
       bookCard.appendChild(bookCardText);
       bookCardText.textContent = `${key}: ${value}`;
     });
@@ -57,6 +62,17 @@ function displayBook() {
 
 function removeBook() {
   this.parentElement.remove();
+}
+
+function readStatus() {
+  let statusChange = window.prompt("Current Reading Status:", "Read");
+
+  if (statusChange == null || statusChange == "") {
+    return;
+  } else {
+    this.parentElement.querySelector("#status").innerHTML =
+      "Status: " + statusChange;
+  }
 }
 
 window.onload = displayBook();
