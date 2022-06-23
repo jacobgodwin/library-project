@@ -4,16 +4,17 @@
 
 body {
   margin: 0;
+  background-color: #e0f2fe;
 }
 
 #main-container {
   display: grid;
-  grid-template-columns: 300px 1fr;
+  grid-template-columns: 15% 300px 1fr 15%;
   grid-template-rows: 100px 1fr 50px;
   grid-template-areas:
-    "header header"
-    "submit library"
-    "footer footer";
+    "header header header header"
+    ". submit library ."
+    "footer footer footer footer";
 }
 
 #header {
