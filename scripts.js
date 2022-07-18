@@ -13,14 +13,6 @@ const addBookButton = document.getElementById("add_book");
 
 addBookButton.addEventListener("click", addBookToLibrary);
 
-// function Book(Title, Author, Pages, Status) {
-//   this.Title = Title;
-//   this.Author = Author;
-//   this.Pages = Pages;
-//   this.Status = Status;
-//   myLibrary.push(this);
-// }
-
 class Book {
   constructor(Title, Author, Pages, Status) {
     this.Title = Title;
@@ -34,7 +26,6 @@ function addBookToLibrary() {
   const inputs = document.querySelectorAll(
     "#title, #author, #pages, #read_status"
   );
-  console.log(inputs);
   const newBook = new Book(
     inputs[0].value,
     inputs[1].value,
@@ -44,7 +35,6 @@ function addBookToLibrary() {
   myLibrary.push(newBook);
   displayBook();
   inputs.forEach((input) => {
-    console.log(input.value);
     input.value = "";
   });
 }
@@ -54,7 +44,7 @@ function displayBook() {
   for (let i = 0; i < myLibrary.length; i++) {
     let bookCard = document.createElement("div");
     bookCard.classList.add("book-card");
-    // bookCard.setAttribute("data-index", `${i}`);
+    bookCard.setAttribute("data-index", `${i}`);
     bookCardContainer.appendChild(bookCard);
     let statusIcon = document.createElement("i");
     statusIcon.classList.add("bi", "bi-bookmark");
@@ -76,7 +66,8 @@ function displayBook() {
 
 function removeBook() {
   this.parentElement.remove();
-  console.log(this.parentElement);
+  let bookIndex = this.parentElement.attributes[1].nodeValue;
+  myLibrary.splice(bookIndex, 1);
 }
 
 function readStatus() {
