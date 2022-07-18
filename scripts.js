@@ -1,33 +1,47 @@
-let myLibrary = [];
+let myLibrary = [
+  {
+    Title: "The Way of Kings",
+    Author: "Brandon Sanderson",
+    Pages: 1007,
+    Status: "Read",
+  },
+  { Title: "Recursion", Author: "Blake Crouch", Pages: 337, Status: "Read" },
+];
 
 const bookCardContainer = document.getElementById("book-cards");
 const addBookButton = document.getElementById("add_book");
 
 addBookButton.addEventListener("click", addBookToLibrary);
 
-function Book(Title, Author, Pages, Status) {
-  this.Title = Title;
-  this.Author = Author;
-  this.Pages = Pages;
-  this.Status = Status;
-  myLibrary.push(this);
+// function Book(Title, Author, Pages, Status) {
+//   this.Title = Title;
+//   this.Author = Author;
+//   this.Pages = Pages;
+//   this.Status = Status;
+//   myLibrary.push(this);
+// }
+
+class Book {
+  constructor(Title, Author, Pages, Status) {
+    this.Title = Title;
+    this.Author = Author;
+    this.Pages = Pages;
+    this.Status = Status;
+  }
 }
-
-const theWayofKings = new Book(
-  "The Way of Kings",
-  "Brandon Sanderson",
-  1007,
-  "Read"
-);
-
-const recursion = new Book("Recursion", "Blake Crouch", 337, "Read");
 
 function addBookToLibrary() {
   const inputs = document.querySelectorAll(
     "#title, #author, #pages, #read_status"
   );
   console.log(inputs);
-  new Book(inputs[0].value, inputs[1].value, inputs[2].value, inputs[3].value);
+  const newBook = new Book(
+    inputs[0].value,
+    inputs[1].value,
+    inputs[2].value,
+    inputs[3].value
+  );
+  myLibrary.push(newBook);
   displayBook();
   inputs.forEach((input) => {
     console.log(input.value);
@@ -62,6 +76,7 @@ function displayBook() {
 
 function removeBook() {
   this.parentElement.remove();
+  console.log(this.parentElement);
 }
 
 function readStatus() {
